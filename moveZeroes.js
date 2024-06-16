@@ -43,4 +43,4 @@ const moveZeroes = (input) => {
   return input;
 };
 
-console.log(moveZeroes([0, 1, 0, 3, 12]));
+console.log(moveZeroes([3, 0, 2, 0, 12, 1]));
