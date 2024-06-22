@@ -23,26 +23,94 @@ class Graph_AList {
 
     return this;
   }
+
+  depthFirstSearch_R(start) {
+    if (!this.adjacencyList[start]) return "Invalid vertex!";
+    const list = [];
+    const visited = {};
+    list.push(start);
+    visited[start] = true;
+
+    const traverse = (vertex) => {
+      if (!vertex) return;
+
+      this.adjacencyList[vertex].forEach((v) => {
+        if (!visited[v] && this.adjacencyList[v].length) {
+          list.push(v);
+          visited[v] = true;
+          return traverse(v);
+        }
+      });
+    };
+
+    traverse(start);
+    return list;
+  }
+
+  depthFirstSearch_I(start) {
+    if (!start) return false;
+    const list = [];
+    const stack = [];
+    const visited = {};
+    visited[start] = true;
+    stack.push(start);
+
+    while (stack.length) {
+      const neighbour = stack.pop();
+      list.push(neighbour);
+
+      this.adjacencyList[neighbour].forEach((n) => {
+        if (!visited[n] && this.adjacencyList[n].length) {
+          stack.push(n);
+          visited[n] = true;
+        }
+      });
+    }
+    return list;
+  }
+
+  breadthFirstSearch_I(start) {
+    if (!start) return false;
+    const list = [];
+    const visited = {};
+    const queue = [start];
+    visited[start] = true;
+
+    while (queue.length) {
+      const currentNode = queue.shift();
+      list.push(currentNode);
+
+      this.adjacencyList[currentNode].forEach((n) => {
+        if (!visited[n] && this.adjacencyList[n].length) {
+          queue.push(n);
+          visited[n] = true;
+        }
+      });
+    }
+
+    return list;
+  }
 }
 
 const graph = new Graph_AList();
-graph.addVertex("0");
-graph.addVertex("1");
-graph.addVertex("2");
-graph.addVertex("3");
-graph.addVertex("4");
-graph.addVertex("5");
-graph.addVertex("6");
-graph.addEdge("3", "1");
-graph.addEdge("3", "4");
-graph.addEdge("4", "2");
-graph.addEdge("4", "5");
-graph.addEdge("1", "2");
-graph.addEdge("1", "0");
-graph.addEdge("0", "2");
-graph.addEdge("6", "5");
+graph.addVertex("A");
+graph.addVertex("B");
+graph.addVertex("C");
+graph.addVertex("D");
+graph.addVertex("E");
+graph.addVertex("F");
+graph.addEdge("A", "B");
+graph.addEdge("A", "C");
+graph.addEdge("B", "D");
+graph.addEdge("C", "E");
+graph.addEdge("D", "E");
+graph.addEdge("D", "F");
+graph.addEdge("E", "F");
 
 console.log(graph);
+console.log(graph.depthFirstSearch_R("A"));
+console.log(graph.depthFirstSearch_I("A"));
+console.log(graph.breadthFirstSearch_I("D"));
 
 // NOTE: 0 is connected to 2 and vice-versa, similarly;
 //       2 is connected to 3 and 3 to 2, two is connected to 1 and 1 to 2
