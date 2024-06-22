@@ -114,7 +114,66 @@ class BinarySearchTree {
 
     return this;
   }
+
+  breadthFirstSearch() {
+    const queue = [];
+    const list = [];
+    queue.push(this.root);
+
+    while (queue.length) {
+      const currentNode = queue.shift();
+      // console.log({ currentNode });
+      list.push(currentNode.value);
+
+      if (currentNode.left) {
+        queue.push(currentNode.left);
+      }
+      if (currentNode.right) {
+        queue.push(currentNode.right);
+      }
+    }
+
+    return list;
+  }
+
+  depthFirstSearchInorder() {
+    return traverseInorder(this.root, []);
+  }
+
+  depthFirstSearchPreorder() {
+    return traversePreorder(this.root, []);
+  }
+
+  depthFirstSearchPostOrder() {
+    return traversePostorder(this.root, []);
+  }
 }
+
+const traversePostorder = (node, list) => {
+  if (node.left) traversePostorder(node.left, list);
+  if (node.right) traversePostorder(node.right, list);
+
+  list.push(node.value);
+
+  return list;
+};
+
+const traverseInorder = (node, list) => {
+  if (node.left) traverseInorder(node.left, list);
+  list.push(node.value);
+  if (node.right) traverseInorder(node.right, list);
+
+  return list;
+};
+
+const traversePreorder = (node, list) => {
+  list.push(node.value);
+
+  if (node.left) traversePreorder(node.left, list);
+  if (node.right) traversePreorder(node.right, list);
+
+  return list;
+};
 
 const Bst = new BinarySearchTree();
 
@@ -125,10 +184,14 @@ Bst.insert(170);
 Bst.insert(15);
 Bst.insert(1);
 Bst.insert(6);
-Bst.remove(9);
+// Bst.remove(9);
 
 // console.log(Bst.lookup(170));
-console.log(JSON.stringify(Bst, null, 2));
+// console.log(JSON.stringify(Bst, null, 2));
+// console.log(Bst.breadthFirstSearch());
+// console.log(Bst.depthFirstSearchInorder());
+// console.log(Bst.depthFirstSearchPreorder());
+// console.log(Bst.depthFirstSearchPostOrder());
 
 // const test = {
 //   root: {
@@ -157,3 +220,5 @@ console.log(JSON.stringify(Bst, null, 2));
 //     },
 //   },
 // };
+
+export { BinarySearchTree };
