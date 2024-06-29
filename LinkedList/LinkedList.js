@@ -98,16 +98,42 @@ class LinkedList {
 
     return arr;
   }
+
+  getMid() {
+    let mid = Math.ceil((this.length - 1) / 2);
+    let node = this.head;
+
+    while (mid) {
+      node = node.next;
+      mid--;
+    }
+
+    return node;
+
+    // NOTE: Another approach.
+    // let slow = this.head;
+    // let fast = this.head;
+
+    // while (fast?.next?.next) {
+    //   slow = slow.next;
+    //   fast = fast?.next?.next;
+    // }
+    // return slow;
+  }
 }
 
 const linkedList = new LinkedList(9);
 linkedList.append(6);
 linkedList.append(16);
+linkedList.append(26);
 linkedList.prepend(10);
 linkedList.insert(2, 5);
+// linkedList.insert(4, 7);
 linkedList.remove(1);
 
 console.log("BEFORE: " + linkedList.printList());
 linkedList.reverse();
 console.log(JSON.stringify(linkedList, null, 2));
 console.log(linkedList.printList());
+
+console.log(linkedList.getMid());

@@ -28,6 +28,6 @@ public class ShippingTask {
     }
 
     public static void main(String[] args) {
-        System.out.println(minimalNumberOfPackages(16, 3, 10)); // Output should be 3
+        System.out.println(minimalNumberOfPackages(16, 3, 10)); // Output should be 4
     }
 }
