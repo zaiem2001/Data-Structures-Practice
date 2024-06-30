@@ -21,24 +21,38 @@ public class TypedStrings {
                 while (backspace > 0) {
                     p1--;
                     backspace--;
+                    if (p1 < 0)
+                        break;
                     if (s1.charAt(p1) == '#') {
                         backspace += 2;
                     }
                 }
-
             }
+
             if (s2_char == '#') {
                 int backspace = 2;
                 while (backspace > 0) {
                     p2--;
                     backspace--;
+                    if (p2 < 0)
+                        break;
                     if (s2.charAt(p2) == '#') {
                         backspace += 2;
                     }
                 }
             }
 
-            return s1.charAt(p1) == s2.charAt(p2);
+            if (p1 < 0 && p2 < 0)
+                return true;
+            if (p1 < 0 || p2 < 0)
+                return false;
+
+            if (s1.charAt(p1) != s2.charAt(p2))
+                return false;
+            else {
+                p1--;
+                p2--;
+            }
         }
 
         return true;
@@ -66,10 +80,10 @@ public class TypedStrings {
     }
 
     public static void main(String[] args) {
-        String s1 = "ab#c";
-        String s2 = "a##c";
+        String s1 = "z#b#c#";
+        String s2 = "za##c";
 
         System.out.println(TypedStrings.checkStrings(s1, s2));
-        System.out.println(TypedStrings.checkStrings_optimal(s1, s2));
+        System.out.println("Optimal: " + TypedStrings.checkStrings_optimal(s1, s2));
     }
 }
