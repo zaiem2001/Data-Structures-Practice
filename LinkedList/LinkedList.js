@@ -7,7 +7,7 @@ class Node {
   }
 }
 
-class LinkedList {
+export class LinkedList {
   constructor(value) {
     const newNode = new Node(value, null);
     this.head = newNode;
@@ -139,19 +139,19 @@ class LinkedList {
   }
 }
 
-const linkedList = new LinkedList(9);
-linkedList.append(6);
-linkedList.append(16);
-linkedList.append(26);
-linkedList.prepend(10);
-linkedList.insert(2, 5);
+// const linkedList = new LinkedList(9);
+// linkedList.append(6);
+// linkedList.append(16);
+// linkedList.append(26);
+// linkedList.prepend(10);
+// linkedList.insert(2, 5);
 // linkedList.insert(4, 7);
-linkedList.remove(1);
+// linkedList.remove(1);
 
-console.log("BEFORE: " + linkedList.printList());
+// console.log("BEFORE: " + linkedList.printList());
 // linkedList.reverse();
-linkedList.reverse_2();
-console.log(JSON.stringify(linkedList, null, 2));
-console.log(linkedList.printList());
+// linkedList.reverse_2();
+// console.log(JSON.stringify(linkedList, null, 2));
+// console.log(linkedList.printList());
 
-console.log(linkedList.getMid());
+// console.log(linkedList.getMid());
