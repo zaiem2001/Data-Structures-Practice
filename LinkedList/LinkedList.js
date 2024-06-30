@@ -75,6 +75,23 @@ class LinkedList {
     return this;
   }
 
+  reverse_2() {
+    let currentNode = this.head;
+    let prevNode = null;
+    this.tail = this.head;
+
+    while (currentNode) {
+      let temp = currentNode.next;
+      currentNode.next = prevNode;
+      prevNode = currentNode;
+      currentNode = temp;
+    }
+
+    this.head = prevNode;
+
+    return this;
+  }
+
   traverseToIndex(index) {
     let counter = 0;
     let currentNode = this.head;
@@ -104,7 +121,7 @@ class LinkedList {
     let node = this.head;
 
     while (mid) {
-      node = node.next;
+      node = node?.next;
       mid--;
     }
 
@@ -132,7 +149,8 @@ linkedList.insert(2, 5);
 linkedList.remove(1);
 
 console.log("BEFORE: " + linkedList.printList());
-linkedList.reverse();
+// linkedList.reverse();
+linkedList.reverse_2();
 console.log(JSON.stringify(linkedList, null, 2));
 console.log(linkedList.printList());
 
