@@ -9,3 +9,7 @@ const findCommon = (s1, s2) => {
 console.log(
   findCommon(["Ava", "Emma", "Olivia"], ["Olivia", "Sophia", "Emma"])
 );
+
+// Composition in JS.
+const multiply = (a, b) => a * b;
+const power = (a, b) => Math.pow(a, b);
