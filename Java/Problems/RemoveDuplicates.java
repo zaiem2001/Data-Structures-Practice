@@ -14,7 +14,7 @@ public class RemoveDuplicates {
             }
         }
 
-        return left;
+        return left + 1;
     }
 
     public static void main(String[] args) {
