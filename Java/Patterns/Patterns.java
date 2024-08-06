@@ -1,6 +1,6 @@
 package Java.Patterns;
 
-import java.util.Scanner;
+// import java.util.Scanner;
 
 public class Patterns {
     /*
