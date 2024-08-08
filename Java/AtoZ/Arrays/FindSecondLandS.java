@@ -41,9 +41,7 @@ public class FindSecondLandS {
                 secondMax = n;
             }
         }
-
         System.out.println("Second Max " + secondMax);
-
     }
 
     public static void main(String[] args) {
