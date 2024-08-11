@@ -2,13 +2,9 @@ package Java.AtoZ.Arrays;
 
 import java.util.Arrays;
 
-public class SortColors {
-    private static void swap(int[] arr, int i, int k) {
-        int temp = arr[i];
-        arr[i] = arr[k];
-        arr[k] = temp;
-    }
+import Java.Utility.Helpers;
 
+public class SortColors {
     public static void sortColrs(int[] arr) {
         int low = 0, high = arr.length - 1, mid = 0;
 
@@ -16,14 +12,14 @@ public class SortColors {
             int elem = arr[mid];
 
             if (elem == 0) {
-                swap(arr, mid, low);
+                Helpers.swap(arr, mid, low);
                 mid++;
                 low++;
 
             } else if (elem == 1) {
                 mid++;
             } else {
-                swap(arr, mid, high);
+                Helpers.swap(arr, mid, high);
                 high--;
             }
         }

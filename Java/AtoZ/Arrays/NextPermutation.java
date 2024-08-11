@@ -2,16 +2,9 @@ package Java.AtoZ.Arrays;
 
 import java.util.Arrays;
 
-public class NextPermutation {
-    private static void reverse(int[] arr, int i, int j) {
-        if (i > j)
-            return;
-        int temp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = temp;
-        reverse(arr, i + 1, j - 1);
-    }
+import Java.Utility.Helpers;
 
+public class NextPermutation {
     public static void findNextPer(int[] arr) {
         // 1. find the breakpoint.
         int breakpoint = -1;
@@ -26,7 +19,8 @@ public class NextPermutation {
 
         // if the breakpoint is -1 then the next permutation is reverse.
         if (breakpoint == -1) {
-            reverse(arr, 0, length - 1);
+            // reverse(arr, 0, length - 1);
+            Helpers.reverse(arr, 0, length - 1);
             System.out.println(Arrays.toString(arr));
             return;
         }
@@ -41,12 +35,12 @@ public class NextPermutation {
             }
         }
 
-        reverse(arr, breakpoint + 1, length - 1);
+        Helpers.reverse(arr, breakpoint + 1, length - 1);
         System.out.println(Arrays.toString(arr));
     }
 
     public static void main(String[] args) {
-        int[] arr = { 3, 3, 4, 4, 2, 1 };
+        int[] arr = { 1, 3, 2 };
         findNextPer(arr);
     }
 }
