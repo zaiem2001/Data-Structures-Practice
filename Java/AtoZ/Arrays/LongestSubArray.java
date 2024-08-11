@@ -41,23 +41,22 @@ public class LongestSubArray {
             sum += arr[i];
 
             if (sum == k)
-                maxLen = Math.max(maxLen, i + 1);
+                maxLen = Math.max(maxLen, i - j + 1);
 
-            while (j <= i) {
-                int preSum = sum - arr[j];
-                if (preSum == k) {
-                    maxLen = Math.max(maxLen, i - j + 1);
-                    j++;
-                }
+            while (sum > k && j <= i) {
+                sum -= arr[j];
+                j++;
             }
             i++;
         }
+
+        System.out.println(maxLen);
     }
 
     public static void main(String[] args) {
-        int[] arr = { 1, 4, 3, 3, 5, 5 };
-        int k = 16;
+        int[] arr = { 1, 2, 3, 1, 1, 1, 1, 3, 3 };
+        int k = 6;
         findLongestSubArr(arr, k);
-        findLongestSubArr(arr, k);
+        findLongestSubArrPositiveInt(arr, k);
     }
 }
