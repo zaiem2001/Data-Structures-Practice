@@ -28,9 +28,7 @@ public class NextPermutation {
         // 2. find the next largest element than breakpoint from the end.
         for (int i = length - 1; i > breakpoint; i--) {
             if (arr[i] > arr[breakpoint]) {
-                int temp = arr[i];
-                arr[i] = arr[breakpoint];
-                arr[breakpoint] = temp;
+                Helpers.swap(arr, breakpoint, i);
                 break;
             }
         }

@@ -53,10 +53,32 @@ public class LongestSubArray {
         System.out.println(maxLen);
     }
 
+    public static void subarraysWithXorK(int[] arr, int k) {
+        HashMap<Integer, Integer> mpp = new HashMap<>();
+        mpp.put(0, 1);
+        int count = 0;
+        int xor = 0;
+
+        for (int i = 0; i < arr.length; i++) {
+            xor ^= arr[i];
+            int preXor = xor ^ k;
+            count += mpp.getOrDefault(preXor, 0);
+            mpp.put(xor, mpp.getOrDefault(xor, 0) + 1);
+        }
+
+        System.out.println(count);
+
+    }
+
     public static void main(String[] args) {
         int[] arr = { 1, 2, 3, 1, 1, 1, 1, 3, 3 };
         int k = 6;
         findLongestSubArr(arr, k);
         findLongestSubArrPositiveInt(arr, k);
+
+        int[] arr_xor = { 5, 6, 7, 8, 9 };
+        int k_xor = 5;
+        subarraysWithXorK(arr_xor, k_xor);
+
     }
 }
