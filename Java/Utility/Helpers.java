@@ -14,4 +14,22 @@ public class Helpers {
         arr[i] = arr[j];
         arr[j] = temp;
     }
+
+    public static int findMax(int[] arr) {
+        int max = Integer.MIN_VALUE;
+
+        for (int x : arr) {
+            max = Math.max(x, max);
+        }
+        return max;
+    }
+
+    public static int findMin(int[] arr) {
+        int min = Integer.MAX_VALUE;
+
+        for (int x : arr) {
+            min = Math.min(x, min);
+        }
+        return min;
+    }
 }
