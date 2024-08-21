@@ -32,4 +32,13 @@ public class Helpers {
         }
         return min;
     }
+
+    public static int findSum(int[] arr) {
+        double sum = 0;
+        for (int x : arr) {
+            sum += x;
+        }
+
+        return (int) sum;
+    }
 }
