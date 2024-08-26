@@ -15,7 +15,7 @@ public class SqRoot {
                 high = mid - 1;
         }
 
-        // System.out.println(ans);
+        System.out.println(ans);
         System.out.println(high);
     }
 
