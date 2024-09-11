@@ -3,7 +3,7 @@ package Java.AtoZ.Recursion;
 import java.util.ArrayList;
 
 public class Subsequence {
-    public static int countSubsequenceWithSumK(int n, int i, int sum, int k, int[] arr) {
+    public static int countSubsequenceWithSumK(int n, int i, int sum, int k, Integer[] arr) {
         if (i == n) {
             if (sum == k)
                 return 1;
@@ -19,7 +19,7 @@ public class Subsequence {
         return l + r;
     }
 
-    public static void printSubsequence(int n, ArrayList<Integer> ds, int[] arr, int indx) {
+    public static <T> void printSubsequence(int n, ArrayList<T> ds, T[] arr, int indx) {
         if (indx == n) {
             System.out.println(ds);
             return;
@@ -36,9 +36,13 @@ public class Subsequence {
     }
 
     public static void main(String[] args) {
-        int[] arr = { 1, 2, 3 };
+        Integer[] arr = { 1, 2, 3 };
         ArrayList<Integer> ds = new ArrayList<>();
         printSubsequence(arr.length, ds, arr, 0);
         System.out.println(countSubsequenceWithSumK(arr.length, 0, 0, 6, arr));
+
+        String[] arr_str = { "a", "a", "b" };
+        ArrayList<String> ds_str = new ArrayList<>();
+        printSubsequence(arr_str.length, ds_str, arr_str, 0);
     }
 }
