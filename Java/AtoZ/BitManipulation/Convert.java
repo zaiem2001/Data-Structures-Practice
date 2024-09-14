@@ -50,10 +50,24 @@ public class Convert {
         System.out.println(a + " " + b);
     }
 
+    static int minBitFlips(int start, int goal) {
+        int xor = start ^ goal;
+        int count = 0;
+
+        for (int i = 0; i < 32; i++) {
+            if ((xor & (1 << i)) != 0) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
     public static void main(String[] args) {
         int x = 11;
         System.out.println(decimalToBinary(x));
         System.out.println(binaryToDecimal(decimalToBinary(x)));
         swap(11, 7);
+        System.out.println(minBitFlips(10, 7));
     }
 }
