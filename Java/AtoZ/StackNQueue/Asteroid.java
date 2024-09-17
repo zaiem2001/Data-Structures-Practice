@@ -1,12 +1,9 @@
 package Java.AtoZ.StackNQueue;
 
 import java.util.Arrays;
-import java.util.Map;
 import java.util.Stack;
 
 public class Asteroid {
-    public static Stack<Map.Entry<Integer, Integer>> myStack2 = new Stack<>();
-
     static int[] asteroidCollision(int[] asteroids) {
         Stack<Integer> myStack = new Stack<>();
         int n = asteroids.length;
