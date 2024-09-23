@@ -6,31 +6,36 @@ import java.util.List;
 
 public class InsertInterval {
     static int[][] insert(int[][] intervals, int[] newInterval) {
-        boolean inserted = false;
-        // List<List<Integer>> result = new ArrayList<>();
+        List<int[]> result = new ArrayList<>();
 
-        for (int i = 0; i < intervals.length; i++) {
-            int[] currInterval = intervals[i];
+        // for non merging intervals
+        int n = intervals.length;
+        int i = 0;
 
-            if (newInterval[0] < currInterval[1] && !inserted) {
-                intervals[i][1] = newInterval[1];
-                inserted = true;
-            } else if (i != 0 && currInterval[0] < intervals[i - 1][1]) {
-                intervals[i - 1][1] = Math.max(currInterval[1], intervals[i - 1][1]);
-            } else {
-                List<Integer> temp = new ArrayList<>();
-                temp.add(currInterval[0]);
-                temp.add(currInterval[1]);
-                // result.add(temp);
-            }
+        while (i < n && intervals[i][1] < newInterval[0]) {
+            result.add(intervals[i]);
+            i++;
         }
 
-        return intervals;
+        while (i < n && intervals[i][0] <= newInterval[1]) {
+            newInterval[0] = Math.min(newInterval[0], intervals[i][0]);
+            newInterval[1] = Math.max(newInterval[1], intervals[i][1]);
+            i++;
+        }
+        result.add(newInterval);
+
+        while (i < n) {
+            result.add(intervals[i]);
+            i++;
+        }
+
+        return result.toArray(new int[result.size()][2]);
     }
 
     public static void main(String[] args) {
-        int[][] intervals = { { 1, 2 }, { 3, 5 }, { 6, 7 }, { 8, 10 }, { 12, 16 } };
-        int[] newInterval = { 4, 8 };
+        int[][] intervals = { { 1, 3 }, { 6, 9 } };
+        // int[][] intervals = { { 1, 2 }, { 3, 5 }, { 6, 7 }, { 8, 10 }, { 12, 16 } };
+        int[] newInterval = { 2, 5 };
 
         System.out.println(Arrays.deepToString(insert(intervals, newInterval)));
     }
