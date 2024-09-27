@@ -18,8 +18,8 @@ public class FindLongestCommonSub {
     }
 
     public static void main(String[] args) {
-        String s1 = "abdc";
-        String s2 = "abc";
+        String s1 = "abac";
+        String s2 = "cab";
         int n = s1.length();
         int m = s2.length();
 
@@ -44,6 +44,29 @@ public class FindLongestCommonSub {
         System.out.println(Arrays.deepToString(dp));
         System.out.println(dp[n][m]);
 
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < dp[n][m]; i++) {
+            sb.append("$");
+        }
+
+        int i = n, j = m;
+        int index = dp[n][m] - 1;
+
+        while (i > 0 && j > 0) {
+            if (s1.charAt(i - 1) == s2.charAt(j - 1)) {
+                sb.setCharAt(index, s1.charAt(i - 1));
+                i--;
+                j--;
+                index--;
+            } else {
+                if (dp[i][j - 1] < dp[i - 1][j])
+                    i--;
+                else
+                    j--;
+            }
+        }
+
+        System.out.println(sb.toString());
         System.out.println(common(n - 1, m - 1, s1, s2));
     }
 }
