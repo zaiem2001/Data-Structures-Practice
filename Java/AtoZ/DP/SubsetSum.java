@@ -1,6 +1,5 @@
 package Java.AtoZ.DP;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 public class SubsetSum {
@@ -31,7 +30,7 @@ public class SubsetSum {
     public static void main(String[] args) {
         int[] arr = { 3, 1, 2, 1 };
         int n = arr.length;
-        int target = 3;
+        int target = 2;
         int[][] dp = new int[n][target + 1];
 
         boolean[][] tab = new boolean[n][target + 1];

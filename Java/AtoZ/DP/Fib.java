@@ -30,7 +30,7 @@ public class Fib {
 
     public static void main(String[] args) {
         int n = 10;
-        // System.out.println(fib(n));
+        System.out.println(fib(n));
         System.out.println(climb(4));
     }
 }
