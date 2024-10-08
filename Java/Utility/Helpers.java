@@ -1,5 +1,8 @@
 package Java.Utility;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Helpers {
     public static void reverse(int[] arr, int i, int j) {
         while (i < j) {
@@ -40,5 +43,19 @@ public class Helpers {
         }
 
         return (int) sum;
+    }
+
+    public static List<List<Integer>> convertIntToList(int[][] list) {
+        List<List<Integer>> output = new ArrayList<>();
+
+        for (int[] row : list) {
+            List<Integer> col = new ArrayList<>();
+            for (int x : row) {
+                col.add(x);
+            }
+            output.add(col);
+        }
+
+        return output;
     }
 }
