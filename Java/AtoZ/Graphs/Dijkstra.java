@@ -47,7 +47,7 @@ public class Dijkstra {
             dst = path[dst];
         }
 
-        shortestPath.add(0);
+        shortestPath.add(s);
 
         System.out.println(Arrays.toString(distance));
         System.out.println(Arrays.toString(path));
