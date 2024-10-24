@@ -28,9 +28,9 @@ public class SubsetSum {
     }
 
     public static void main(String[] args) {
-        int[] arr = { 3, 1, 2, 1 };
+        int[] arr = { 3, 34, 4, 12, 5, 2 };
         int n = arr.length;
-        int target = 2;
+        int target = 9;
         int[][] dp = new int[n][target + 1];
 
         boolean[][] tab = new boolean[n][target + 1];
