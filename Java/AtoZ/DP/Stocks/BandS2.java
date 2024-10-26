@@ -3,6 +3,25 @@ package Java.AtoZ.DP.Stocks;
 import java.util.Arrays;
 
 public class BandS2 {
+    static int solve(int day, int canBuy, int[] prices, int fee) {
+        if (day >= prices.length)
+            return 0;
+
+        int profit = 0;
+
+        if (canBuy == 1) {
+            profit = Math.max((-prices[day]) + solve(day + 1, 0, prices, fee), solve(day + 1, 1, prices, fee));
+        } else {
+            profit = Math.max((prices[day] - fee) + solve(day + 1, 1, prices, fee), solve(day + 1, 0, prices, fee));
+        }
+
+        return profit;
+    }
+
+    static int maxProfitWithTxnFee(int[] prices, int fee) {
+        return solve(0, 1, prices, fee);
+    }
+
     static int maxProfit(int[] nums, int canBuy, int i, int[][] dp) {
         if (i == nums.length)
             return 0;
@@ -88,5 +107,23 @@ public class BandS2 {
         System.out.println(maxProfit_atMost2(nums, 1, 0, 2));
 
         System.out.println(maxProfit_coolDown(nums, 0, 1));
+
+        System.out.println("With Txn fee.");
+        int[] prices = { 1, 3, 2, 8, 4, 9 };
+        int fee = 2;
+        System.out.println(maxProfitWithTxnFee(prices, fee));
+        int p = prices.length;
+
+        int[][] txnDP = new int[p + 1][2];
+        // txnDP[p - 1][0] = 0;
+        // txnDP[p - 1][1] = -prices[p - 1];
+
+        for (int i = p - 1; i >= 0; i--) {
+            txnDP[i][1] = Math.max((-prices[i]) + txnDP[i + 1][0], txnDP[i + 1][1]);
+            txnDP[i][0] = Math.max((prices[i] - fee) + txnDP[i + 1][1], txnDP[i + 1][0]);
+        }
+
+        System.out.println(txnDP[0][1]);
+        System.out.println(Arrays.deepToString(txnDP));
     }
 }

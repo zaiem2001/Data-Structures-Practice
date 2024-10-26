@@ -2,7 +2,9 @@ package Java.AtoZ.Graphs;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 import Java.Utility.Helpers;
 
@@ -61,9 +63,36 @@ public class Traversals {
         return output;
     }
 
+    static void bfs(int[][] adj) {
+        int n = adj.length;
+        int[] visited = new int[n];
+
+        Queue<Integer> q = new LinkedList<>();
+        q.offer(0);
+        visited[0] = 1;
+        List<Integer> output = new ArrayList<>();
+
+        while (!q.isEmpty()) {
+            int currentNode = q.poll();
+            output.add(currentNode);
+
+            for (int child : adj[currentNode]) {
+                if (visited[child] == 0) {
+                    q.offer(child);
+                    visited[child] = 1;
+                }
+            }
+
+        }
+
+        System.out.println("BFS..");
+        System.out.println(output);
+    }
+
     public static void main(String[] args) {
         int[][] adj = { { 2, 3, 1 }, { 0 }, { 0, 4 }, { 0 }, { 2 } };
         System.out.println(dfsOfGraph(5, Helpers.convertIntToList(adj)));
+        bfs(adj);
 
         int[][] graph = { { 1, 2 }, { 3 }, { 3 }, {} };
         System.out.println(allPathsSourceTarget(graph));
