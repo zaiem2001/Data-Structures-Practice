@@ -18,6 +18,20 @@ public class FrogJump {
         return dp[n] = Math.min(left, right);
     }
 
+    static int jump_k_times(int n, int k, int[] arr) {
+        if (n < 0)
+            return 0;
+
+        int jump = 0;
+        for (int i = 1; i <= k; i++) {
+            if (n >= i) {
+                jump = jump_k_times(n - i, k, arr) + Math.abs(arr[n] - arr[n - i]);
+            }
+        }
+
+        return jump;
+    }
+
     static int jump_bottom(int[] arr, int n) {
         int[] dp = new int[n];
         dp[0] = 0;
@@ -36,12 +50,13 @@ public class FrogJump {
     }
 
     public static void main(String[] args) {
-        int[] arr = new int[] { 10, 20, 30, 10 };
+        int[] arr = new int[] { 10, 10 };
         int[] dp = new int[arr.length];
         System.out.println(jump_bottom(arr, arr.length));
         Arrays.fill(dp, -1);
 
         System.out.println(jump_top(arr, arr.length - 1, dp));
+        System.out.println(jump_k_times(arr.length - 1, 100, arr));
     }
 
 }
